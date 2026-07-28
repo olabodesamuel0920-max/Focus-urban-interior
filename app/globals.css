@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #1a1c23;
+  --ember: #d44007;
+  --canvas: #f8f7f4;
+  --copy: #202020;
+  --muted: #707070;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--canvas);
+}
+
+body {
+  margin: 0;
+  color: var(--copy);
+  background: var(--canvas);
+  font-family: Montserrat, "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+::selection {
+  background: var(--ember);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--canvas);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c9c5bf;
+  border-radius: 999px;
+}
+
+.display {
+  font-family: "Code Next", "Arial Narrow", "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.045em;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.image-wash::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 8, 9, 0.07), rgba(8, 8, 9, 0.72));
+}
+
+.project-card img,
+.journal-card img {
+  transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+}
+
+.project-card:hover img,
+.journal-card:hover img {
+  transform: scale(1.045);
+}
+
+.marquee-track,
+.animate-marquee {
+  animation: marquee 34s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
